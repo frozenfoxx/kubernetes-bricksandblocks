@@ -1,0 +1,18 @@
+annotations:
+  max_scale_version: 23.10.2
+  min_scale_version: 23.10.0
+apiVersion: v2
+appVersion: 3.1
+deprecated: false
+description: Zandronum multiplayer game server
+keywords:
+  - zandronum
+kubeVersion: ">=1.24.0-0"
+maintainers:
+  - name: FrozenFOXX
+    email: frozenfoxx@cultoffoxx.net
+    url: https://cultoffoxx.net
+name: zandronum-server
+sources:
+  - https://hub.docker.com/r/frozenfoxx/zandronum-server
+type: application
