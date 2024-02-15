@@ -3,9 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: heimdall-pvc
 spec:
-  storageClassName: synostorage-smb
+  storageClassName: synology-smb-storage
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+  volumeMode: Filesystem
