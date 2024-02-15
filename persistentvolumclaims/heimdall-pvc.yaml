@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: heimdall-pvc
 spec:
-  storageClassName: synology-iscsi-storage
+  storageClassName: synostorage-smb
   accessModes:
     - ReadWriteOnce
   resources:
