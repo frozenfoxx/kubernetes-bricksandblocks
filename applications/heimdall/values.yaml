@@ -1,3 +1,5 @@
+namespace: heimdall
+
 image:
   repository: linuxserver/heimdall
   tag: latest
