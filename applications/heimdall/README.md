@@ -7,7 +7,7 @@ A Helm chart for deploying [Heimdall](https://heimdall.site)
 ```
 cd ..
 helm package heimdall
-helm install heimdall -f ./heimdall-[version].tgz --create-namespace
+helm install heimdall -f ./heimdall-[version].tgz --namespace heimdall
 ```
 
 # Contributing
