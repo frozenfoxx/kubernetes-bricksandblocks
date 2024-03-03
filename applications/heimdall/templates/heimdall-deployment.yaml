@@ -42,7 +42,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /config
-              name: heimdall-claim0
+              name: heimdall-pvc
       restartPolicy: Always
       volumes:
         - name: heimdall-pvc
