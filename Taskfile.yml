@@ -8,17 +8,20 @@ env:
   NFS_HOST:
   NFS_INSTANCE_GUID:
 
-includes:
-
 tasks:
   default:
     cmds:
       - task -l
     silent: true
 
+  lint:
+    desc: "Check the syntax on scripts"
+    cmds:
+      - shellcheck {{.ROOT_DIR}}/scripts/*.sh
+
   setup:
     desc: "Configure repository for use"
     cmds:
-      - ${ROOT_DIR}/scripts/configure_templates.sh
+      - {{.ROOT_DIR}}/scripts/configure_templates.sh
       vars:
-        ROOT_DIR: ${ROOT_DIR}
+        ROOT_DIR: {{.ROOT_DIR}}
