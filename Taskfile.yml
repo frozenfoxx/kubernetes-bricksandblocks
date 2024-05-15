@@ -3,12 +3,6 @@ version: "3"
 
 dotenv: [".env"]
 
-env:
-  NFS_CLUSTER_EXPORT: ""
-  NFS_HOST: ""
-  NFS_INSTANCE_GUID: ""
-  ROOT_DIR: "{{.ROOT_DIR}}"
-
 tasks:
   default:
     cmds:
@@ -24,3 +18,5 @@ tasks:
     desc: Configure repository for use
     cmds:
       - "{{.ROOT_DIR}}/scripts/configure_templates.sh"
+    env:
+      ROOT_DIR: "{{.ROOT_DIR}}"
