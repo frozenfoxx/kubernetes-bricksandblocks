@@ -26,7 +26,7 @@ tasks:
           CHART_DIR: "{{.ROOT_DIR}}/addons/democratic-csi"
           CHART_NAME: 'democratic-nfs-client'
           CHART_REPO: 'democratic-csi/democratic-csi'
-          CHART_VERSION: 'latest'
+          CHART_VERSION: '0.14.6'
           NAMESPACE: 'democratic-csi'
           VALUES_YAML: 'nfs-values.yaml'
 
