@@ -3,11 +3,32 @@ version: "3"
 
 dotenv: [".env"]
 
+includes:
+  git:
+    taskfile: .taskfiles/git.tasks.yml
+    internal: true
+
+  helm:
+    taskfile: .taskfiles/helm.tasks.yml
+    internal: true
+
 tasks:
   default:
     cmds:
       - task -l
     silent: true
+
+  deploy:
+    desc: Deploy changes to the cluster
+    cmds:
+      - task: helm:install
+        vars:
+          CHART_DIR: "{{.ROOT_DIR}}/addons/democratic-csi"
+          CHART_NAME: 'democratic-nfs-client'
+          CHART_REPO: 'democratic-csi/democratic-csi'
+          CHART_VERSION: 'latest'
+          NAMESPACE: 'democratic-csi'
+          VALUES_YAML: 'nfs-values.yaml'
 
   lint:
     desc: Check the syntax on scripts
@@ -20,3 +41,8 @@ tasks:
       - "{{.ROOT_DIR}}/scripts/configure_templates.sh"
     env:
       ROOT_DIR: "{{.ROOT_DIR}}"
+
+  update:
+    desc: "Update repo"
+    cmds:
+      - task: git:submodule:update
