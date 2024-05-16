@@ -45,4 +45,5 @@ tasks:
   update:
     desc: "Update repo"
     cmds:
+      - task: git:pull
       - task: git:submodule:update
