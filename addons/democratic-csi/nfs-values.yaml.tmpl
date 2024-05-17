@@ -39,10 +39,10 @@ controller:
     lifecycle:
       postStart:
         exec:
-          command: ["/bin/sh", "-c", "mkdir -p /nfs-storage; mount ${NFS_HOST}:${NFS_CLUSTER_EXPORT} /nfs-storage"]
+          command: ["/bin/sh", "-c", "mkdir -p ${NFS_MOUNT}; mount ${NFS_HOST}:${NFS_CLUSTER_EXPORT} ${NFS_MOUNT}"]
       preStop:
         exec:
-          command: ["/bin/sh","-c","umount /nfs-storage"]
+          command: ["/bin/sh","-c","umount ${NFS_MOUNT}"]
 # provide the config to controller how to map and setup a PVC
 driver:
   config:
@@ -51,7 +51,7 @@ driver:
     nfs:
       shareHost: ${NFS_HOST}
       shareBasePath: "${NFS_CLUSTER_EXPORT}"
-      controllerBasePath: "/nfs-storage"
+      controllerBasePath: "${NFS_MOUNT}"
 # allow control to PVC creation user and permission
       dirPermissionsMode: "0700"
       dirPermissionsUser: 1000
