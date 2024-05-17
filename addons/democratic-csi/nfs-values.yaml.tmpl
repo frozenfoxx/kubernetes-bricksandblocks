@@ -50,7 +50,7 @@ driver:
     instance_id: ${NFS_INSTANCE_GUID}
     nfs:
       shareHost: ${NFS_HOST}
-      shareBasePath: "/nfs-storage"
+      shareBasePath: "${NFS_CLUSTER_EXPORT}"
       controllerBasePath: "/nfs-storage"
 # allow control to PVC creation user and permission
       dirPermissionsMode: "0700"
