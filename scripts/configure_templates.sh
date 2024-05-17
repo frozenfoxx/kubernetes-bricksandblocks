@@ -4,6 +4,7 @@
 NFS_CLUSTER_EXPORT=${NFS_CLUSTER_EXPORT:-''}
 NFS_INSTANCE_GUID=${NFS_INSTANCE_GUID:-''}
 NFS_HOST=${NFS_HOST:-''}
+NFS_MOUNT=${NFS_MOUNT:-''}
 ROOT_DIR=${ROOT_DIR:-''}
 
 # Functions
@@ -14,6 +15,7 @@ export_vars()
     export NFS_CLUSTER_EXPORT
     export NFS_INSTANCE_GUID
     export NFS_HOST
+    export NFS_MOUNT
     export ROOT_DIR
 }
 
@@ -23,6 +25,7 @@ unset_vars()
     unset NFS_CLUSTER_EXPORT
     unset NFS_INSTANCE_GUID
     unset NFS_HOST
+    unset NFS_MOUNT
     unset ROOT_DIR
 }
 
