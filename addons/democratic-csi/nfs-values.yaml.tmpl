@@ -49,7 +49,7 @@ driver:
     driver: nfs-client
     instance_id: ${NFS_INSTANCE_GUID}
     nfs:
-      shareHost: ${NFS_HOST}
+      shareHost: "${NFS_HOST}"
       shareBasePath: "${NFS_CLUSTER_EXPORT}"
       controllerBasePath: "${NFS_MOUNT}"
 # allow control to PVC creation user and permission
