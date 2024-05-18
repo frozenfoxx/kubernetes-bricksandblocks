@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Variables
-BACKUP_PV_DIR=${BACKUP_PV_DIR:'.'}
+BACKUP_PV_DIR=${BACKUP_PV_DIR:-'.'}
 
 # Functions
 
