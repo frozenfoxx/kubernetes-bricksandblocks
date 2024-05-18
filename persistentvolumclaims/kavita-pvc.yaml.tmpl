@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: heimdall-pvc
+  name: kavita-pvc
 spec:
-  storageClassName: synology-smb-storage
+  storageClassName: ${CSI_NAME}
   accessModes:
     - ReadWriteOnce
   resources:
