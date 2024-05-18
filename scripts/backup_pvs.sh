@@ -11,15 +11,23 @@ backup()
   # Get a list of all persistent volumes
   PV_LIST=$(kubectl get pv -o go-template="{{range .items}}{{.metadata.name}}{{\"\n\"}}{{end}}")
 
-  # Loop through each persistent volume
+  # Loop all PVs found
   for PV_NAME in ${PV_LIST}; do
-    # Describe the persistent volume
-    PV_DETAILS=$(kubectl get pv ${PV_NAME} -o yaml)
+    PV_DETAILS=$(kubectl get pv "${PV_NAME}" -o yaml)
 
-    # Write the description to a YAML file named after the PV
-    echo "${PV_DETAILS}" > "${BACKUP_PV_DIR}/${PV_NAME}.yaml"
+    # Save to a file
+    echo "${PV_DETAILS}" > "${BACKUP_PV_DIR}/${PV_NAME}-raw.yaml"
 
-    # Inform user
+    # Add the last-applied-configuration annotation
+    LAST_APPLIED=$(cat "${BACKUP_PV_DIR}/${PV_NAME}-raw.yaml" | kubectl create --dry-run=client -o yaml -f -)
+    kubectl annotate --overwrite -f "${BACKUP_PV_DIR}/${PV_NAME}-raw.yaml" \
+      kubectl.kubernetes.io/last-applied-configuration="$(echo "${LAST_APPLIED}" | \
+      sed 's/"/\\"/g' | \
+      tr -d '\n')" -o yaml \
+      > "${BACKUP_PV_DIR}/${PV_NAME}.yaml"
+
+    # Cleanup
+    rm "${BACKUP_PV_DIR}/${PV_NAME}-raw.yaml"
     echo "Created ${BACKUP_PV_DIR}/${PV_NAME}.yaml"
   done
 }
