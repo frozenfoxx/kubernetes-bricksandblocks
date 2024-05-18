@@ -9,7 +9,7 @@ BACKUP_PV_DIR=${BACKUP_PV_DIR:-'.'}
 backup()
 {
   # Get a list of all persistent volumes
-  PV_LIST=$(kubectl get pv -o go-template="{{range .items}}{{.metadata.name}}\n{{end}}")
+  PV_LIST=$(kubectl get pv -o go-template="{{range .items}}{{.metadata.name}}{{\"\n\"}}{{end}}")
 
   # Loop through each persistent volume
   for PV_NAME in ${PV_LIST}; do
