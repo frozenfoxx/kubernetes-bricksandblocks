@@ -22,6 +22,7 @@ tasks:
     desc: Deploy changes to the cluster
     cmds:
       - task: deploy:csi
+      - task: deploy:pvc
 
   deploy:csi:
     desc: Deploy CSI
@@ -34,6 +35,12 @@ tasks:
           CHART_VERSION: '0.14.6'
           NAMESPACE: 'democratic-csi'
           VALUES_YAML: 'nfs-values.yaml'
+  
+  deploy:pvc:
+    desc: Deploy Persistent Volume Claims
+    cmds:
+      - kubectl apply -f .
+    dir: "{{.ROOT_DIR}}/persistentvolumeclaims"
 
   lint:
     desc: Check the syntax on scripts
