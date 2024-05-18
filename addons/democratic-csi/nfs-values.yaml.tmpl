@@ -2,7 +2,7 @@ csiDriver:
   name: "org.democratic-csi.nfs-client"
 storageClasses:
 # changed the name from nfs-client, so it runs in parallel with nfs-client-provisioner
-- name: democratic-nfs-client
+- name: ${CSI_NAME}
   defaultClass: true
 # set to Retain, so PVC will be left alone on delete
   reclaimPolicy: Retain
@@ -39,7 +39,7 @@ controller:
     lifecycle:
       postStart:
         exec:
-          command: ["/bin/sh", "-c", "mkdir -p ${NFS_MOUNT}; mount ${NFS_HOST}:${NFS_CLUSTER_EXPORT} ${NFS_MOUNT}"]
+          command: ["/bin/sh", "-c", "mkdir -p ${CSI_NFS_MOUNT}; mount ${CSI_NFS_HOST}:${CSI_NFS_CLUSTER_EXPORT} ${CSI_NFS_MOUNT}"]
       preStop:
         exec:
           command: ["/bin/sh","-c","umount ${NFS_MOUNT}"]
@@ -47,11 +47,11 @@ controller:
 driver:
   config:
     driver: nfs-client
-    instance_id: ${NFS_INSTANCE_GUID}
+    instance_id: ${CSI_NFS_INSTANCE_GUID}
     nfs:
-      shareHost: "${NFS_HOST}"
-      shareBasePath: "${NFS_CLUSTER_EXPORT}"
-      controllerBasePath: "${NFS_MOUNT}"
+      shareHost: "${CS_NFS_HOST}"
+      shareBasePath: "${CSI_NFS_CLUSTER_EXPORT}"
+      controllerBasePath: "${CSI_NFS_MOUNT}"
 # allow control to PVC creation user and permission
       dirPermissionsMode: "0700"
       dirPermissionsUser: 1000

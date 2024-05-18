@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # Variables
-NFS_CLUSTER_EXPORT=${NFS_CLUSTER_EXPORT:-''}
-NFS_INSTANCE_GUID=${NFS_INSTANCE_GUID:-''}
-NFS_HOST=${NFS_HOST:-''}
-NFS_MOUNT=${NFS_MOUNT:-''}
+CSI_NAME=${CSI_NAME:-''}
+CSI_NFS_CLUSTER_EXPORT=${CSI_NFS_CLUSTER_EXPORT:-''}
+CSI_NFS_INSTANCE_GUID=${CSI_NFS_INSTANCE_GUID:-''}
+CSI_NFS_HOST=${CSI_NFS_HOST:-''}
+CSI_NFS_MOUNT=${CSI_NFS_MOUNT:-''}
 ROOT_DIR=${ROOT_DIR:-''}
 
 # Functions
@@ -12,20 +13,21 @@ ROOT_DIR=${ROOT_DIR:-''}
 ## Export variables to replace in the templates
 export_vars()
 {
-    export NFS_CLUSTER_EXPORT
-    export NFS_INSTANCE_GUID
-    export NFS_HOST
-    export NFS_MOUNT
+    export CSI_NAME
+    export CSI_NFS_CLUSTER_EXPORT
+    export CSI_NFS_INSTANCE_GUID
+    export CSI_NFS_HOST
+    export CSI_NFS_MOUNT
     export ROOT_DIR
 }
 
 ## Unset variables for safety
 unset_vars()
 {
-    unset NFS_CLUSTER_EXPORT
-    unset NFS_INSTANCE_GUID
-    unset NFS_HOST
-    unset NFS_MOUNT
+    unset CSI_NFS_CLUSTER_EXPORT
+    unset CSI_NFS_INSTANCE_GUID
+    unset CSI_NFS_HOST
+    unset CSI_NFS_MOUNT
     unset ROOT_DIR
 }
 

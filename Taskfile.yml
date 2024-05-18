@@ -21,6 +21,11 @@ tasks:
   deploy:
     desc: Deploy changes to the cluster
     cmds:
+      - task: deploy:csi
+
+  deploy:csi:
+    desc: Deploy CSI
+    cmds:
       - task: helm:install
         vars:
           CHART_DIR: "{{.ROOT_DIR}}/addons/democratic-csi"
