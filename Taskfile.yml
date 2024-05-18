@@ -18,11 +18,19 @@ tasks:
       - task -l
     silent: true
 
+  backup:pvs:
+    desc: Backup Persistent Volumes
+    cmds:
+      - ./scripts/backup_pvs.sh
+    env:
+      BACKUP_PV_DIR: "{{.ROOT_DIR}}/persistentvolumes"
+
   deploy:
-    desc: Deploy changes to the cluster
+    desc: Deploy cluster from scratch
     cmds:
       - task: deploy:csi
-      - task: deploy:pvc
+      - task: deploy:pvs
+      - task: deploy:pvcs
 
   deploy:csi:
     desc: Deploy CSI
@@ -36,7 +44,13 @@ tasks:
           NAMESPACE: 'democratic-csi'
           VALUES_YAML: 'nfs-values.yaml'
   
-  deploy:pvc:
+  deploy:pvs:
+    desc: Deploy Persistent Volumes
+    cmds:
+      - kubectl apply -f .
+    dir: "{{.ROOT_DIR}}/persistentvolumes"
+
+  deploy:pvcs:
     desc: Deploy Persistent Volume Claims
     cmds:
       - kubectl apply -f .
