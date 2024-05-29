@@ -13,25 +13,25 @@ HOST_ARCH=''
 check_commands()
 {
   # Check for grep
-  if ! sudo -i -u ${BUILDUSER} command -v grep &> /dev/null; then
+  if ! command -v grep &> /dev/null; then
     echo "grep could not be found!"
     exit 1
   fi
 
   # Check for cURL
-  if ! sudo -i -u ${BUILDUSER} command -v curl &> /dev/null; then
+  if ! command -v curl &> /dev/null; then
     echo "cURL could not be found!"
     exit 1
   fi
 
   # Check for wget
-  if ! sudo -i -u ${BUILDUSER} command -v wget &> /dev/null; then
+  if ! command -v wget &> /dev/null; then
     echo "wget could not be found!"
     exit 1
   fi
 
   # Check for velero
-  if ! sudo -i -u ${BUILDUSER} command -v velero &> /dev/null; then
+  if ! command -v velero &> /dev/null; then
     echo "velero already installed!"
     exit 1
   fi
@@ -72,9 +72,9 @@ set_vars()
   fi
 
   # Set the operating system
-  if [[ "${OSTYPE}" == "linux*" ]]
+  if [[ "${OSTYPE}" == "linux*" ]]; then
     HOST_OS="linux"
-  elif [[ "${OSTYPE}" == "darwin*" ]]
+  elif [[ "${OSTYPE}" == "darwin*" ]]; then
     HOST_OS="darwin"
   else
     HOST_OS="linux"
