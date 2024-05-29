@@ -65,6 +65,7 @@ tasks:
     desc: Configure repository for use
     cmds:
       - "{{.ROOT_DIR}}/scripts/configure_templates.sh"
+      - "{{.ROOT_DIR}}/scripts/install_velero.sh"
     env:
       ROOT_DIR: "{{.ROOT_DIR}}"
 
