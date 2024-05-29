@@ -31,7 +31,7 @@ check_commands()
   fi
 
   # Check for velero
-  if ! command -v velero &> /dev/null; then
+  if command -v velero &> /dev/null; then
     echo "velero already installed!"
     exit 1
   fi
