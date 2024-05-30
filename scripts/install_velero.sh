@@ -67,6 +67,8 @@ set_vars()
   # Set the architecture
   if [[ "$(arch)" == "aarch64" ]]; then
     HOST_ARCH="arm64"
+  elif [[ "$(arch)" == "x86_64" ]]; then
+    HOST_ARCH="amd64"
   else
     HOST_ARCH="aarch64"
   fi
