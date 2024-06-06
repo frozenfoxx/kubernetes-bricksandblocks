@@ -6,10 +6,12 @@ dotenv: [".env"]
 includes:
   git:
     taskfile: .taskfiles/git.tasks.yml
+    optional: true
     internal: true
 
   helm:
     taskfile: .taskfiles/helm.tasks.yml
+    optional: true
     internal: true
 
 tasks:
@@ -72,5 +74,7 @@ tasks:
   update:
     desc: "Update repo"
     cmds:
-      - task: git:pull
-      - task: git:submodule:update
+      - rm -rf .taskfiles
+      - git clone https://github.com/frozenfoxx/taskfiles.git .taskfiles
+      - git reset --hard
+      - git pull --rebase
